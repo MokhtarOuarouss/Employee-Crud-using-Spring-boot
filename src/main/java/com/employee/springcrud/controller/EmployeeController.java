@@ -24,7 +24,7 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
         return "New Employee is added";
     }
-
+    //show all Employee in database
     @GetMapping("/getAll")
     public List<Employee> getAllEmployees(){
         return employeeService.getAllEmployees();
@@ -36,6 +36,7 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
+    //update Employee using id
     @PutMapping("/updateEmp/{id}")
     Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
 
@@ -53,7 +54,7 @@ public class EmployeeController {
                 });
     }
 
-
+    //delete employee
     @GetMapping("/delete-Emp/{id}")
     public String deleteEmployeeById(@PathVariable Long id){
         employeeService.DeleteEmployee(id);
