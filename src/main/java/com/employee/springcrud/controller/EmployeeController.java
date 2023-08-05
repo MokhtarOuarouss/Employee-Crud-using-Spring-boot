@@ -3,16 +3,18 @@ package com.employee.springcrud.controller;
 import com.employee.springcrud.model.Employee;
 import com.employee.springcrud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+
 @RequestMapping("/employee")
 //make 2 applications (Spring , React) to connect to each other
-//@CrossOrigin(origins = {"http://localhost:3000/"})
-@CrossOrigin("*")
+@CrossOrigin(origins = {"http://localhost:3000/"})
+//@CrossOrigin("*")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
@@ -55,10 +57,10 @@ public class EmployeeController {
     }
 
     //delete employee
-    @GetMapping("/delete-Emp/{id}")
-    public String deleteEmployeeById(@PathVariable Long id){
+    @DeleteMapping("/delete-Emp/{id}") // Use @DeleteMapping for delete operation
+    public ResponseEntity<String> deleteEmployeeById(@PathVariable Long id) {
         employeeService.DeleteEmployee(id);
-        return "Employee deleted successfully";
+        return ResponseEntity.ok("Employee deleted successfully");
     }
 
 }
